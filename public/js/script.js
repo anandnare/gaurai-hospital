@@ -299,7 +299,11 @@ function initAppointment() {
   renderAppointmentSelects();
   if (p.get('doctor') && doctorOf(p.get('doctor'))) { f.dept.value = doctorOf(p.get('doctor')).dept; renderAppointmentSelects(); f.doctor.value = p.get('doctor'); loadSlots(); }
   f.dept.addEventListener('change', () => { f.doctor.value = ''; renderAppointmentSelects(); });
-  f.doctor.addEventListener('change', loadSlots);
+  f.doctor.addEventListener('change', () => {
+    const d = doctorOf(f.doctor.value);
+    if (d && f.dept.value !== d.dept) { f.dept.value = d.dept; renderAppointmentSelects(); }
+    loadSlots();
+  });
   f.date.addEventListener('change', loadSlots);
   $('#slots').addEventListener('click', e => {
     const b = e.target.closest('.slot'); if (!b || b.disabled) return;
@@ -309,6 +313,7 @@ function initAppointment() {
     e.preventDefault();
     const msg = $('#apMsg'); msg.classList.add('hidden');
     const v = { name: f.name.value.trim(), phone: f.phone.value.replace(/\s|-/g, ''), age: +f.age.value, gender: (f.gender.value || ''), dept: f.dept.value, doctor: f.doctor.value, date: f.date.value, time: chosenSlot, reason: f.reason.value.trim() };
+    if (!v.dept && v.doctor && doctorOf(v.doctor)) v.dept = doctorOf(v.doctor).dept;
     if (!/^\d{10}$/.test(v.phone)) return showMsg(msg, 'err', t('ap_phone_err'));
     if (v.name.length < 2 || !(v.age >= 0 && v.age <= 120) || !v.gender || !v.dept || !v.doctor || !v.date || !v.time) return showMsg(msg, 'err', t('ap_err'));
     const btn = $('button[type=submit]', f); btn.disabled = true;
