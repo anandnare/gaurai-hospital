@@ -347,7 +347,8 @@ function initContact() {
   f.addEventListener('submit', async e => {
     e.preventDefault(); const msg = $('#cMsg');
     const v = { name: f.name.value.trim(), email: f.email.value.trim(), phone: f.phone.value.trim(), subject: f.subject.value.trim(), message: f.message.value.trim() };
-    if (v.name.length < 2 || !/^\S+@\S+\.\S+$/.test(v.email) || v.message.length < 5) return showMsg(msg, 'err', t('ap_err'));
+    if (v.name.length < 2 || !/^\S+@\S+\.\S+$/.test(v.email)) return showMsg(msg, 'err', t('ap_err'));
+    if (v.message.length < 5) return showMsg(msg, 'err', 'Please write a message of at least 5 characters.');
     try { const r = await api('/api/contact', { method: 'POST', body: JSON.stringify(v) }); if (!r.ok) throw new Error('x'); }
     catch (err) { const all = localList('gh_msgs'); all.push(v); store.set('gh_msgs', JSON.stringify(all)); }
     showMsg(msg, 'ok', t('c_ok')); f.reset();
