@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="Main building">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E6B6B"/><stop offset="1" stop-color="#3FC3B6"/></linearGradient></defs>
+<rect width="400" height="300" fill="url(#g)"/><circle cx="330" cy="50" r="90" fill="#fff" opacity=".10"/><circle cx="60" cy="250" r="110" fill="#fff" opacity=".08"/>
+<g transform="translate(152 70) scale(2.1)" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40V18l16-8 16 8v22zM20 40V28h8v12M12 22h4M32 22h4"/></g>
+<text x="200" y="210" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff" opacity=".95">Main building</text></svg>

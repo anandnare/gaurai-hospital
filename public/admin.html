@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Admin | Gaurai Hospital</title><link rel="icon" href="images/favicon.svg">
+<script>try{var t=localStorage.getItem('gh_theme')||'light';document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="css/style.css"></head>
+<body><div class="wrap" style="padding-top:30px;padding-bottom:60px">
+<h1>Admin panel</h1>
+<form id="login" class="card" style="max-width:420px"><div class="field"><label for="key">Admin key</label><input id="key" type="password" required></div><button class="btn" type="submit">Open</button><div id="err" class="msg err hidden"></div></form>
+<div id="panel" class="hidden">
+  <div class="chips" style="margin-bottom:16px"><button class="chip on" data-tab="a">Appointments</button><button class="chip" data-tab="m">Messages</button><button class="chip" id="refresh">Refresh</button></div>
+  <div id="tabA" class="table-wrap"><table><thead><tr><th>ID</th><th>Patient</th><th>Phone</th><th>Doctor</th><th>Date &amp; time</th><th>Status</th></tr></thead><tbody id="aBody"></tbody></table></div>
+  <div id="tabM" class="table-wrap hidden"><table><thead><tr><th>Name</th><th>Contact</th><th>Subject</th><th>Message</th></tr></thead><tbody id="mBody"></tbody></table></div>
+</div></div>
+<script>
+const $=s=>document.querySelector(s); let KEY='';
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function call(path,opt){const r=await fetch(path,Object.assign({headers:{'x-admin-key':KEY,'Content-Type':'application/json'}},opt));const d=await r.json();if(!r.ok)throw new Error(d.error||'Error');return d}
+async function load(){
+  const a=(await call('/api/admin/appointments')).appointments, m=(await call('/api/admin/messages')).messages;
+  $('#aBody').innerHTML=a.map(x=>`<tr><td>${esc(x.id)}</td><td>${esc(x.name)}<br><small>${esc(x.age)} / ${esc(x.gender)}</small></td><td>${esc(x.phone)}</td><td>${esc(x.doctor)}<br><small>${esc(x.dept)}</small></td><td>${esc(x.date)}<br>${esc(x.time)}</td>
+  <td><select data-id="${esc(x.id)}">${['Pending','Confirmed','Completed','Cancelled'].map(s=>`<option${s===x.status?' selected':''}>${s}</option>`).join('')}</select></td></tr>`).join('')||'<tr><td colspan="6">No appointments yet.</td></tr>';
+  $('#mBody').innerHTML=m.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.email)}<br>${esc(x.phone)}</td><td>${esc(x.subject)}</td><td>${esc(x.message)}</td></tr>`).join('')||'<tr><td colspan="4">No messages yet.</td></tr>';
+}
+$('#login').addEventListener('submit',async e=>{e.preventDefault();KEY=$('#key').value;try{await load();$('#login').classList.add('hidden');$('#panel').classList.remove('hidden')}catch(err){$('#err').textContent=err.message;$('#err').classList.remove('hidden')}});
+document.addEventListener('change',async e=>{if(e.target.matches('select[data-id]')){try{await call('/api/admin/appointments/'+e.target.dataset.id,{method:'PATCH',body:JSON.stringify({status:e.target.value})})}catch(err){alert(err.message)}}});
+document.addEventListener('click',e=>{const t=e.target.closest('[data-tab]');if(t){document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('on',x===t));$('#tabA').classList.toggle('hidden',t.dataset.tab!=='a');$('#tabM').classList.toggle('hidden',t.dataset.tab!=='m')}if(e.target.id==='refresh')load()});
+</script></body></html>

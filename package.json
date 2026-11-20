@@ -1,0 +1,1 @@
+{ "name": "gaurai-hospital", "version": "1.0.0", "description": "Gaurai Hospital website with online appointments", "main": "server.js", "scripts": { "start": "node server.js" }, "license": "MIT" }

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="Nurses day">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B83280"/><stop offset="1" stop-color="#F5A0D0"/></linearGradient></defs>
+<rect width="400" height="300" fill="url(#g)"/><circle cx="330" cy="50" r="90" fill="#fff" opacity=".10"/><circle cx="60" cy="250" r="110" fill="#fff" opacity=".08"/>
+<g transform="translate(152 70) scale(2.1)" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l5 12h13l-10 8 4 13-12-8-12 8 4-13-10-8h13z"/></g>
+<text x="200" y="210" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff" opacity=".95">Nurses day</text></svg>

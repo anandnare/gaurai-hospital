@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Appointment | Gaurai Hospital</title>
+<meta name="description" content="Gaurai Hospital - experienced doctors, diagnostic tests and online appointment booking.">
+<script>try{var t=localStorage.getItem('gh_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Serif+Devanagari:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="appointment">
+<div id="site-header"></div>
+<main id="main">
+<section class="page-hero"><div class="wrap"><h1 data-i18n="ap_title">Book an appointment</h1><p data-i18n="ap_sub">Fill in your details, choose a doctor and pick a time slot.</p></div></section>
+
+<section class="section"><div class="wrap apt-layout">
+  <div class="card">
+    <form id="apForm" novalidate>
+      <fieldset><legend data-i18n="ap_s1">Your details</legend>
+        <div class="row2"><div class="field"><label for="aName" data-i18n="f_name">Full name</label><input id="aName" name="name" required autocomplete="name"></div>
+        <div class="field"><label for="aPhone" data-i18n="f_phone">Mobile number</label><input id="aPhone" name="phone" type="tel" inputmode="numeric" maxlength="10" required autocomplete="tel"></div></div>
+        <div class="row2"><div class="field"><label for="aAge" data-i18n="f_age">Age</label><input id="aAge" name="age" type="number" min="0" max="120" required></div>
+        <div class="field"><label data-i18n="f_gender">Gender</label><div class="radio-row">
+          <label><input type="radio" name="gender" value="Male"><span data-i18n="g_male">Male</span></label>
+          <label><input type="radio" name="gender" value="Female"><span data-i18n="g_female">Female</span></label>
+          <label><input type="radio" name="gender" value="Other"><span data-i18n="g_other">Other</span></label></div></div></div>
+      </fieldset>
+      <fieldset><legend data-i18n="ap_s2">Doctor and date</legend>
+        <div class="row3">
+          <div class="field"><label for="aDept" data-i18n="f_dept">Department</label><select id="aDept" name="dept" required></select></div>
+          <div class="field"><label for="aDoc" data-i18n="f_doctor">Doctor</label><select id="aDoc" name="doctor" required></select></div>
+          <div class="field"><label for="aDate" data-i18n="f_date">Preferred date</label><input id="aDate" name="date" type="date" required></div>
+        </div>
+      </fieldset>
+      <fieldset><legend data-i18n="ap_s3">Choose a time slot</legend><div class="slots" id="slots" aria-live="polite"></div></fieldset>
+      <div class="field"><label for="aReason" data-i18n="f_reason">Reason for visit (optional)</label><textarea id="aReason" name="reason" style="min-height:80px"></textarea></div>
+      <div id="apMsg" class="msg hidden" role="alert"></div>
+      <button class="btn btn-accent btn-block" type="submit" data-i18n="ap_submit">Confirm appointment</button>
+    </form>
+    <div id="apDone" class="hidden">
+      <h2 data-i18n="ap_ok_t">Appointment confirmed</h2>
+      <div class="ticket" id="ticket"></div>
+      <div id="apDemo" class="msg err hidden" data-i18n="ap_demo">Saved in demo mode because the server is not running.</div>
+      <p class="muted" data-i18n="ap_ok_p">Please arrive 10 minutes early and carry a photo ID. Keep this ID safe to check or change your booking.</p>
+      <div class="actions noprint"><button class="btn" id="apPrint" type="button" data-i18n="ap_print">Print</button><button class="btn btn-ghost" id="apNew" type="button" data-i18n="ap_new">Book another</button></div>
+    </div>
+  </div>
+  <aside class="card noprint"><h3 data-i18n="ap_check_t">Before you come</h3>
+    <ul class="checklist"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="chk1">Carry previous reports and prescriptions</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="chk2">Stay fasting for 8–10 hours if you are booking blood tests</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="chk3">Bring a photo ID and this booking ID</span></li></ul>
+    <p class="muted small"><span data-i18n="h1">Mon–Sat: 9:00 AM – 8:00 PM</span><br><span data-i18n="h2">Sunday: 10:00 AM – 1:00 PM</span></p>
+  </aside>
+</div></section>
+
+</main>
+<div id="site-footer"></div>
+<script src="js/i18n.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Pharmacy">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B7F4B"/><stop offset="1" stop-color="#7FE0A6"/></linearGradient></defs>
+<rect width="400" height="300" fill="url(#g)"/><circle cx="330" cy="50" r="90" fill="#fff" opacity=".10"/><circle cx="60" cy="250" r="110" fill="#fff" opacity=".08"/>
+<g transform="translate(152 70) scale(2.1)" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 34l-6-6a8 8 0 0 1 12-12l12 12a8 8 0 0 1-12 12zM16 16l12 12"/></g>
+<text x="200" y="235" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff" opacity=".95">Pharmacy</text></svg>
